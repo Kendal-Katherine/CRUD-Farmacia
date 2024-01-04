@@ -50,6 +50,16 @@ public class ProdutoController {
 		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
 	}
 
+	@GetMapping("/menor/{preco}")
+	public ResponseEntity<List<Produtos>> getByMenor(@PathVariable Double preco) {
+		return ResponseEntity.ok(produtoRepository.findByPrecoLessThanEqual(preco));
+	}
+	
+	@GetMapping("/maior/{preco}")
+	public ResponseEntity<List<Produtos>> getByMaior(@PathVariable Double preco) {
+		return ResponseEntity.ok(produtoRepository.findByPrecoGreaterThan(preco));
+	}
+	
 	@PostMapping
 	public ResponseEntity<Produtos> post(@Valid @RequestBody Produtos produtos) {
 		if (categoriaRepository.existsById(produtos.getCategoria().getId())

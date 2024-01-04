@@ -10,5 +10,7 @@ import com.generation.farmacia.model.Produtos;
 public interface ProdutoRepository extends JpaRepository<Produtos, Long> {
 
 	List<Produtos> findAllByNomeContainingIgnoreCase(@Param("nome") String Nome);
+	List<Produtos> findByPrecoLessThanEqual(@Param("menor") Double preco);
+	List<Produtos> findByPrecoGreaterThan(@Param("nome") Double preco);
 
 }
